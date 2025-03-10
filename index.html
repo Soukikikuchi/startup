@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="最新技術で企業のDXを支援するIT企業です。システム開発、クラウドソリューション、コンサルティングサービスを提供しています。">
+    <meta name="keywords" content="IT企業, システム開発, DX, デジタルトランスフォーメーション, クラウドソリューション">
+    <title>株式会社テックソリューション | 企業のDXを支援するIT企業</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004080;
+            --accent-color: #ff9900;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --spacing: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ヘッダー */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-menu a {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            padding-top: 80px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 60%;
+            height: 80%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 70%;
+            height: 70%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 20s infinite alternate-reverse ease-in-out;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(5%, 5%) scale(1.1);
+            }
+            100% {
+                transform: translate(10%, 0%) scale(1);
+            }
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 1s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e68a00;
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: var(--spacing) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* サービスセクション */
+        .services {
+            background-color: var(--light-gray);
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 事例セクション */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .case-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .case-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .case-content {
+            padding: 1.5rem;
+            background-color: var(--white);
+        }
+        
+        .case-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-content .industry {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        /* 会社情報セクション */
+        .company {
+            background-color: var(--light-gray);
+        }
+        
+        .company-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .company-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .company-data {
+            margin-top: 2rem;
+        }
+        
+        .company-data dt {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        .company-data dd {
+            margin-left: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company-image {
+            height: 100%;
+            background-color: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* お問い合わせセクション */
+        .contact {
+            background-color: var(--white);
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* フッター */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                padding: 2rem;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .company-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .company-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                height: auto;
+                padding: 100px 0 50px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-grid, .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">TechSolution</div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#case-studies">事例</a></li>
+                        <li><a href="#company">会社情報</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+                <div class="menu-toggle">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ビジネスの未来を<br>テクノロジーで創る</h1>
+                <p>私たちは最新のIT技術で企業のデジタルトランスフォーメーションを支援します。<br>わかりやすく、使いやすいシステムで、あなたのビジネスの課題を解決します。</p>
+                <a href="#contact" class="btn">お問い合わせはこちら</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- サービスセクション -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>サービス</h2>
+                <p>企業のIT課題を解決する多彩なソリューションをご提供します</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>システム開発</h3>
+                    <p>お客様のビジネスに最適なシステムを設計・開発します。使いやすさと拡張性を重視した開発で、業務効率化を実現します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>クラウドソリューション</h3>
+                    <p>クラウド環境の構築から移行、運用までをトータルサポート。コスト削減と業務の柔軟性向上を実現します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>ITコンサルティング</h3>
+                    <p>経営戦略に基づいたIT戦略の策定をサポート。最適なIT投資計画の立案から実行までをお手伝いします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 事例セクション -->
+    <section id="case-studies" class="case-studies">
+        <div class="container">
+            <div class="section-title">
+                <h2>導入事例</h2>
+                <p>多くの企業様にご利用いただいています</p>
+            </div>
+            <div class="case-studies-grid">
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="/api/placeholder/400/200" alt="製造業向けシステム" />
+                    </div>
+                    <div class="case-content">
+                        <span class="industry">製造業</span>
+                        <h3>生産管理システムの刷新</h3>
+                        <p>老朽化した生産管理システムをクラウド化。データ連携の自動化により、生産効率が30%向上しました。</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="/api/placeholder/400/200" alt="小売業向けシステム" />
+                    </div>
+                    <div class="case-content">
+                        <span class="industry">小売業</span>
+                        <h3>顧客管理システムの導入</h3>
+                        <p>店舗とECサイトの顧客データを統合し、パーソナライズされたマーケティングを実現。売上が25%増加しました。</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="/api/placeholder/400/200" alt="サービス業向けシステム" />
+                    </div>
+                    <div class="case-content">
+                        <span class="industry">サービス業</span>
+                        <h3>予約管理システムの開発</h3>
+                        <p>スマートフォン対応の予約システムを開発。顧客満足度が向上し、予約率が40%アップしました。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社情報セクション -->
+    <section id="company" class="company">
+        <div class="container">
+            <div class="section-title">
+                <h2>会社情報</h2>
+                <p>私たちについてご紹介します</p>
+            </div>
+            <div class="company-info">
+                <div class="company-text">
+                    <h3>「テクノロジーの力で、ビジネスに革新を」</h3>
+                    <p>株式会社テックソリューションは、中小企業のDX推進を支援するIT企業です。2025年の設立以来、多くの企業様のデジタル化をサポートしてきました。</p>
+                    <p>私たちは「わかりやすいIT」をモットーに、専門知識がなくても理解・活用できるシステム開発を心がけています。お客様の業務を深く理解し、本当に必要な機能を実装することで、使い続けられるシステムを提供します。</p>
+                    
+                    <dl class="company-data">
+                        <dt>会社名</dt>
+                        <dd>株式会社テックソリューション</dd>
+                        
+                        <dt>設立</dt>
+                        <dd>2025年3月</dd>
+                        
+                        <dt>所在地</dt>
+                        <dd>〒100-0001 東京都千代田区1-1-1 テックビル5F</dd>
+                        
+                        <dt>代表者</dt>
+                        <dd>代表取締役 山田 太郎</dd>
+                        
+                        <dt>事業内容</dt>
+                        <dd>システム開発、クラウドソリューション提供、ITコンサルティング</dd>
+                    </dl>
+                </div>
+                <div class="company-image">
+                    <img src="/api/placeholder/500/400" alt="会社の外観" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>お問い合わせ</h2>
+                <p>ご質問・ご相談はこちらからお気軽にどうぞ</p>
+            </div>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="company">会社名</label>
+                        <input type="text" id="company" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">お名前</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry">お問い合わせ内容</label>
+                        <textarea id="inquiry" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">送信する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>株式会社テックソリューション</h4>
+                    <p>〒100-0001<br>東京都千代田区1-1-1<br>テックビル5F</p>
+                    <p>TEL: 03-1234-5678</p>
+                    <p>E-mail: info@techsolution.co.jp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#services">システム開発</a></li>
+                        <li><a href="#services">クラウドソリューション</a></li>
+                        <li><a href="#services">ITコンサルティング</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>会社情報</h4>
+                    <ul>
+                        <li><a href="#company">企業理念</a></li>
+                        <li><a href="#company">会社概要</a></li>
+                        <li><a href="#case-studies">導入事例</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <ul>
+                        <li><a href="#contact">お問い合わせフォーム</a></li>
+                        <li><a href="#">採用情報</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 株式会社テックソリューション All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ハンバーガーメニューの制御
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // ナビゲーションリンクのスムーススクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // スクロール時のヘッダー背景変更
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
